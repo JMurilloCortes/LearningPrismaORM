@@ -5,18 +5,18 @@ const prisma = new PrismaClient();
 async function main() {
 
 
-  const users = await prisma.user.findMany({
-    include: {
-      posts: true,
-    },
-  });
-  users.forEach((user) => {
-    console.log("------------------------------------");
-    console.log(`User: ${user.name} ${user.lastName}`);
-    user.posts.forEach((post, i) => {
-      console.log(`${i}. ${post.title} ${post.content}`);
-    });
-  });
+  // const users = await prisma.user.findMany({
+  //   include: {
+  //     posts: true,
+  //   },
+  // });
+  // users.forEach((user) => {
+  //   console.log("------------------------------------");
+  //   console.log(`User: ${user.name} ${user.lastName}`);
+  //   user.posts.forEach((post, i) => {
+  //     console.log(`${i}. ${post.title} ${post.content}`);
+  //   });
+  // });
 
 
 
