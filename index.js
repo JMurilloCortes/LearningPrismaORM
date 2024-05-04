@@ -4,15 +4,43 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-//   const newUser = await prisma.user.create({
-//     data: {
-//       email: "fenagles19@gmail.com",
-//       name: "Fe",
-//       lastName: "Nagles",
-//       password: "N1234",
-//   }
-//   });
-//   console.log(newUser)
+  const newUser = await prisma.user.create({
+    data: {
+      email: "juanes@gmail.com",
+      name: "Juan",
+      lastName: "Esteban",
+      password: "J1234",
+      posts: {
+        create: {
+          title: "Este es mi primer post",
+          content: "Estoy feliz de estar escribiendo mi primer post",
+        },
+      },
+    },
+  });
+  console.log(newUser);
+
+
+  // const newUser = await prisma.user.create({
+  //   data: {
+  //     email: "yebemuco@gmail.com",
+  //     name: "Yesenia",
+  //     lastName: "Murillo",
+  //     password: "Y1234",
+  // }
+  // });
+  // console.log(newUser)
+
+  
+  // const newPost = await prisma.post.create({
+  //   data: {
+  //     title: "Haciendo mi propio blog",
+  //     content: "Estoy haciendo mi propio blog con Prisma y Node.js",
+  //     authorId: newUser.id,
+  //   },
+  // });
+  // console.log(newPost);
+
 
   // const allUsers = await prisma.user.findMany();
   // console.log(allUsers)
@@ -57,24 +85,24 @@ async function main() {
   // })
   // console.log(user)
 
-  const user = await prisma.user.upsert({
-    where: {
-      email: "jealmuco@gmail.com",
-    },
-    update: {
-      name: "Jerry",
-      lastName: "Murillo",
-      password: "J1234",
-      email: "jealmuco@gmail.com",
-    },
-    create: {
-      name: "Jerry",
-      lastName: "Murillo",
-      password: "J1234",
-      email: "jealmuco@gmail.com",
-    },
-  });
-  console.log(user);
+  // const user = await prisma.user.upsert({
+  //   where: {
+  //     email: "jealmuco@gmail.com",
+  //   },
+  //   update: {
+  //     name: "Jerry",
+  //     lastName: "Murillo",
+  //     password: "J1234",
+  //     email: "jealmuco@gmail.com",
+  //   },
+  //   create: {
+  //     name: "Jerry",
+  //     lastName: "Murillo",
+  //     password: "J1234",
+  //     email: "jealmuco@gmail.com",
+  //   },
+  // });
+  // console.log(user);
 
 
 
