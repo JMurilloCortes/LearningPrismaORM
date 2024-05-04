@@ -50,12 +50,31 @@ async function main() {
   // });
   // console.log(user);
 
-  const user = await prisma.user.delete({
+  // const user = await prisma.user.delete({
+  //   where: {
+  //     email: "fenagles19@gmail.com",
+  //   }
+  // })
+  // console.log(user)
+
+  const user = await prisma.user.upsert({
     where: {
-      email: "fenagles19@gmail.com",
-    }
-  })
-  console.log(user)
+      email: "jealmuco@gmail.com",
+    },
+    update: {
+      name: "Jerry",
+      lastName: "Murillo",
+      password: "J1234",
+      email: "jealmuco@gmail.com",
+    },
+    create: {
+      name: "Jerry",
+      lastName: "Murillo",
+      password: "J1234",
+      email: "jealmuco@gmail.com",
+    },
+  });
+  console.log(user);
 
 
 
