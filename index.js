@@ -4,21 +4,37 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-  const newUser = await prisma.user.create({
-    data: {
-      email: "juanes@gmail.com",
-      name: "Juan",
-      lastName: "Esteban",
-      password: "J1234",
-      posts: {
-        create: {
-          title: "Este es mi primer post",
-          content: "Estoy feliz de estar escribiendo mi primer post",
-        },
-      },
+
+  const users = await prisma.user.findMany({
+    include: {
+      posts: true,
     },
   });
-  console.log(newUser);
+  users.forEach((user) => {
+    console.log("------------------------------------");
+    console.log(`User: ${user.name} ${user.lastName}`);
+    user.posts.forEach((post, i) => {
+      console.log(`${i}. ${post.title} ${post.content}`);
+    });
+  });
+
+
+
+  // const newUser = await prisma.user.create({
+  //   data: {
+  //     email: "juanes@gmail.com",
+  //     name: "Juan",
+  //     lastName: "Esteban",
+  //     password: "J1234",
+  //     posts: {
+  //       create: {
+  //         title: "Este es mi segundo post",
+  //         content: "Super contento de estar creando posts",
+  //       },
+  //     },
+  //   },
+  // });
+  // console.log(newUser);
 
 
   // const newUser = await prisma.user.create({
@@ -34,8 +50,8 @@ async function main() {
   
   // const newPost = await prisma.post.create({
   //   data: {
-  //     title: "Haciendo mi propio blog",
-  //     content: "Estoy haciendo mi propio blog con Prisma y Node.js",
+  //     title: "Este es mi segundo post",
+  //     content: "Super contento de estar creando posts",
   //     authorId: newUser.id,
   //   },
   // });
