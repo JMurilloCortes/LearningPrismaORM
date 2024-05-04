@@ -3,16 +3,17 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // const newUser = await prisma.user.create({
-  //   data: {
-  //     email: "fenagles19@gmail.com",
-  //     name: "Fe",
-  //     lastName: "Nagles",
-  //     password: "N1234",
-  // }
-  // });
-  // console.log(newUser)
-  
+
+//   const newUser = await prisma.user.create({
+//     data: {
+//       email: "fenagles19@gmail.com",
+//       name: "Fe",
+//       lastName: "Nagles",
+//       password: "N1234",
+//   }
+//   });
+//   console.log(newUser)
+
   // const allUsers = await prisma.user.findMany();
   // console.log(allUsers)
 
@@ -28,19 +29,30 @@ async function main() {
   // })
   // console.log(user)
 
-  const user = await prisma.user.findFirst({
+  // const user = await prisma.user.findFirst({
+  //   where: {
+  //     AND: [{ email: "fenagles19@gmail.com" }, { name: "Fe" }],
+  //   },
+  // });
+  // console.log(user);
+
+
+  const user = await prisma.user.update({
     where: {
-      AND: [
-        { email: "fenagles19@gmail.com" },
-        { name: "Fe" }
-  ]
+      email: "alice@gmail.com",
+    },
+    data: {
+      email: "fenagles19@gmail.com",
+      name: "Fe",
+      lastName: "Nagles",
+      password: "F1234",
+    },
+  });
+  console.log(user);
+
+
+
+
 }
-  })
-  console.log(user)
-  
 
-
-
-}
-
-main()
+main();
